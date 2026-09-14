@@ -89,17 +89,61 @@ h1 {
     justify-content: center;
 }
 
-.percolation-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
+.percolation-network {
+    width: 340px;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
 }
 
-.percolation-grid span {
-    width: 55px;
-    height: 55px;
-    border: 1px solid #ccc;
+.network-row {
+    display: flex;
+    justify-content: space-between;
 }
+
+.network-row span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    display: block;
+    position: relative;
+}
+
+.network-row span.occupied {
+    background: #777;
+}
+
+.bond {
+    position: absolute;
+    width: 76px;
+    height: 2px;
+    background: #d6d6d2;
+}
+
+/*
+.network-row span::after {
+    content: "";
+    position: absolute;
+    width: 76px;
+    height: 1px;
+    background: #d6d6d2;
+    left: 9px;
+    top: 4px;
+}
+
+.network-row span::before {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 76px;
+    background: #d6d6d2;
+    left: 4px;
+    top: 9px;
+}
+*/
 
 .work-preview {
     border-top: 1px solid #ccc;
@@ -118,7 +162,7 @@ h1 {
     grid-template-columns: 50px 1fr auto;
     gap: 30px;
     align-items: start;
-    paddingL 25px 0;
+    padding: 25px 0;
     border-top: 1px solid #ddd;
 }
 
@@ -144,7 +188,7 @@ h1 {
     margin: 0;
 }
 
-media (max-width: 700px) {
+@media (max-width: 700px) {
     .work-item {
         grid-template-columns: 35px 1fr;
     }
