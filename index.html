@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toby Clark</title>
-    
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
     <nav>
-        <a href="index.html">Toby Clark</a>
+        <a href="index.html" class="logo">Toby Clark</a>
 
-        <div>
+        <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="projects.html">Projects</a>
@@ -23,11 +23,77 @@
 
     <main>
 
-        <h1>Hello, I'm Toby.</h1>
+        <section class="hero">
 
-        <p>Welcome to my website.</p>
+            <div class="hero-txt">
+
+                <p class="eyebrow">PHYSICS · MATHEMATICS · COMPUTATION</p>
+
+                <h1>Curious about<br>how things work.</h1>
+
+                <p class="intro">I'm Toby, a Cambridge physicist interested in the
+                    mathematical and computational side of physics -
+                    and in where those ideas lead beyond it.
+                </p>
+
+                <a href="projects.html" class="hero-link">
+                    Explore my work →
+                </a>
+
+            </div>
+
+            <div class="hero-visual">
+                <div class="percolation-grid">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="work-preview">
+            <div class="section-label">SELECTED WORK</div>
+
+            <div class="work-item">
+                <div class="work number">01</div>
+                <div>
+                    <h2>Percolation &amp; network modelling</h2>
+                    <p>
+                        Newman-Ziff sumulation of site and bond percolation,
+                        with computational analysis of cluster formation.
+                    </p>
+                </div>
+                <div class="work-type">COMPUTATIONAL PHYSICS</div>
+            </div>
+        </section>
 
     </main>
+
+    <script src="js/percolation.js"></script>
 
 </body>
 
