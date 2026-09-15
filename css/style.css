@@ -90,70 +90,26 @@ h1 {
 }
 
 .percolation-network {
+    --site-size: 9px;
+
     width: 349px;
     height: 349px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     position: relative;
 }
 
-.network-row {
-    display: contents;
-}
-
-.network-row span {
-    width: 9px;
-    height: 9px;
+.site {
+    display: block;
+    width: var(--site-size);
+    height: var(--site-size);
     border-radius: 50%;
     background: #1a1a1a;
-    display: block;
     position: absolute;
     z-index: 2;
+    transform: translate(-50%, -50%);
 }
 
-.network-row span.occupied {
+.site.occupied {
     background: #777;
-}
-
-.network-row:nth-child(1) span {
-    top: 0;
-}
-
-.network-row:nth-child(2) span {
-    top: 85px;
-}
-
-.network-row:nth-child(3) span {
-    top: 170px;
-}
-
-.network-row:nth-child(4) span {
-    top: 255px;
-}
-
-.network-row:nth-child(5) span {
-    top: 340px;
-}
-
-.network-row span:nth-child(1) {
-    left: 0;
-}
-
-.network-row span:nth-child(2) {
-    left: 85px;
-}
-
-.network-row span:nth-child(3) {
-    left: 170px;
-}
-
-.network-row span:nth-child(4) {
-    left: 255px;
-}
-
-.network-row span:nth-child(5) {
-    left: 340px;
 }
 
 .bond {

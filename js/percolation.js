@@ -31,6 +31,27 @@ class Lattice {
         }
     }
 
+    getGeometry() {
+        const width = this.networkElement.clientWidth;
+        const height = this.networkElement.clientHeight;
+
+        const styles = getComputedStyle(this.networkElement);
+        const siteSize = parseFloat(styles.getPropertyValue('--site-size'));
+        const siteRadius = siteSize / 2;
+
+        const horizontalSpacing =
+            (width - siteSize) / (this.cols - 1);
+
+        const verticalSpacing =
+            (height - siteSize) / (this.rows - 1);
+
+        return {
+            siteRadius,
+            horizontalSpacing,
+            verticalSpacing
+        };
+    }
+
     getNeighbours(row, col) {
         const neighbors = [];
 
@@ -116,11 +137,17 @@ class Lattice {
         const bond = document.createElement('div');
         bond.classList.add('bond');
 
-        const x1 = siteA.col * 85 + 4.5;
-        const y1 = siteA.row * 85 + 4.5;
+        const {
+            siteRadius,
+            horizontalSpacing,
+            verticalSpacing,
+        } = this.getGeometry();
 
-        const x2 = siteB.col * 85 + 4.5;
-        const y2 = siteB.row * 85 + 4.5;
+        const x1 = siteRadius + siteA.col * horizontalSpacing;
+        const y1 = siteRadius + siteA.row * verticalSpacing;
+
+        const x2 = siteRadius + siteB.col * horizontalSpacing;
+        const y2 = siteRadius + siteB.row * verticalSpacing;
 
         bond.style.left = `${Math.min(x1, x2)}px`;
         bond.style.top = `${Math.min(y1, y2)}px`;
@@ -143,20 +170,35 @@ class Lattice {
     connectToDOM() {
         this.networkElement = document.querySelector('.percolation-network');
 
-        const rows = document.querySelectorAll('.network-row');
+        const {
+            siteRadius,
+            horizontalSpacing,
+            verticalSpacing,
+        } = this.getGeometry();
 
         for (let row = 0; row < this.rows; row++) {
-            const sites = rows[row].querySelectorAll('span');
-        
             for (let col = 0; col < this.cols; col++) {
-                this.sites[row][col].element = sites[col];
+
+                const siteElement = document.createElement('span');
+
+                siteElement.classList.add('site');
+
+                const x = siteRadius + col * horizontalSpacing;
+                const y = siteRadius + row * verticalSpacing;
+
+                siteElement.style.left = `${x}px`;
+                siteElement.style.top = `${y}px`;
+
+                this.networkElement.appendChild(siteElement)
+
+                this.sites[row][col].element = siteElement;
             }
         }
     }
 }
 
 
-const lattice = new Lattice(5, 5);
+const lattice = new Lattice(8, 8);
 
 lattice.connectToDOM();
 
@@ -169,5 +211,3 @@ function animatePercolation() {
 }
 
 animatePercolation();
-
-console.log(lattice.bonds);
