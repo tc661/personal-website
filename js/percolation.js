@@ -167,6 +167,29 @@ class Lattice {
         return bond;
     }
 
+    reset() {
+        for (let row = 0; row < this.rows; row++) {
+            for (let col = 0; col < this.cols; col++) {
+                const site = this.sites[row][col];
+
+                site.occupied = false;
+                site.neighbours = [];
+                site.element.classList.remove('occupied');
+            }
+        }
+
+        this.bonds.clear()
+
+        const bondElements = this.networkElement.querySelectorAll('.bond');
+
+        for (const bond of bondElements) {
+            bond.remove();
+        }
+
+        this.occupationOrder = null;
+        this.currentStep = 0;
+    }
+
     connectToDOM() {
         this.networkElement = document.querySelector('.percolation-network');
 
@@ -198,7 +221,7 @@ class Lattice {
 }
 
 
-const lattice = new Lattice(8, 8);
+const lattice = new Lattice(6, 6);
 
 lattice.connectToDOM();
 
@@ -207,6 +230,17 @@ function animatePercolation() {
 
     if (site != null) {
         setTimeout(animatePercolation, 250);
+    } else {
+        setTimeout(() => {
+            lattice.networkElement.classList.add("resetting");
+
+            setTimeout(() => {
+                lattice.reset();
+                lattice.networkElement.classList.remove("resetting");
+                animatePercolation();
+            }, 400);
+
+        }, 1200);
     }
 }
 
