@@ -18,6 +18,7 @@ class Lattice {
         this.rows = rows;
         this.cols = cols;
         this.sites = [];
+        this.bonds = new Set();
 
         for (let row = 0; row < rows; row++) {
             let currentRow = [];
@@ -59,6 +60,16 @@ class Lattice {
             if (neighbour.occupied) {
                 site.neighbours.push(neighbour);
                 neighbour.neighbours.push(site);
+
+                const key = [
+                    `${site.row},${site.col}`,
+                    `${neighbour.row},${neighbour.col}`
+                ].sort().join('-');
+
+                if (!this.bonds.has(key)) {
+                    this.bonds.add(key);
+                    this.createBond(site, neighbour);
+                }
             }
         }
     }
@@ -103,18 +114,35 @@ class Lattice {
 
     createBond(siteA, siteB) {
         const bond = document.createElement('div');
-
         bond.classList.add('bond');
 
-        bond.style.left = `${siteA.col * 85 + 4.5}px`;
-        bond.style.top = `${siteA.row * 85}px`;
+        const x1 = siteA.col * 85 + 4.5;
+        const y1 = siteA.row * 85 + 4.5;
 
-        this.sites[siteA.row][siteA.col].element.parentElement.appendChild(bond);
+        const x2 = siteB.col * 85 + 4.5;
+        const y2 = siteB.row * 85 + 4.5;
+
+        bond.style.left = `${Math.min(x1, x2)}px`;
+        bond.style.top = `${Math.min(y1, y2)}px`;
+
+        if (siteA.row === siteB.row) {
+            bond.style.width = `${Math.abs(x2 - x1)}px`;
+            bond.style.height = '2px';
+            bond.style.top = `${y1 - 1}px`;
+        } else {
+            bond.style.width = '2px';
+            bond.style.height = `${Math.abs(y2 - y1)}px`;
+            bond.style.left = `${x1 - 1}px`;
+        }
+
+        this.networkElement.appendChild(bond);
 
         return bond;
     }
 
     connectToDOM() {
+        this.networkElement = document.querySelector('.percolation-network');
+
         const rows = document.querySelectorAll('.network-row');
 
         for (let row = 0; row < this.rows; row++) {
@@ -132,7 +160,14 @@ const lattice = new Lattice(5, 5);
 
 lattice.connectToDOM();
 
-const siteA = lattice.sites[2][2];
-const siteB = lattice.sites[2][3];
+function animatePercolation() {
+    const site = lattice.occupyNext();
 
-lattice.createBond(siteA, siteB);
+    if (site != null) {
+        setTimeout(animatePercolation, 250);
+    }
+}
+
+animatePercolation();
+
+console.log(lattice.bonds);

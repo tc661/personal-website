@@ -90,8 +90,8 @@ h1 {
 }
 
 .percolation-network {
-    width: 340px;
-    height: 340px;
+    width: 349px;
+    height: 349px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -99,8 +99,7 @@ h1 {
 }
 
 .network-row {
-    display: flex;
-    justify-content: space-between;
+    display: contents;
 }
 
 .network-row span {
@@ -109,18 +108,58 @@ h1 {
     border-radius: 50%;
     background: #1a1a1a;
     display: block;
-    position: relative;
+    position: absolute;
+    z-index: 2;
 }
 
 .network-row span.occupied {
     background: #777;
 }
 
+.network-row:nth-child(1) span {
+    top: 0;
+}
+
+.network-row:nth-child(2) span {
+    top: 85px;
+}
+
+.network-row:nth-child(3) span {
+    top: 170px;
+}
+
+.network-row:nth-child(4) span {
+    top: 255px;
+}
+
+.network-row:nth-child(5) span {
+    top: 340px;
+}
+
+.network-row span:nth-child(1) {
+    left: 0;
+}
+
+.network-row span:nth-child(2) {
+    left: 85px;
+}
+
+.network-row span:nth-child(3) {
+    left: 170px;
+}
+
+.network-row span:nth-child(4) {
+    left: 255px;
+}
+
+.network-row span:nth-child(5) {
+    left: 340px;
+}
+
 .bond {
     position: absolute;
-    width: 76px;
-    height: 2px;
     background: #d6d6d2;
+    z-index: 1;
 }
 
 /*
