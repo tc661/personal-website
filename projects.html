@@ -5,14 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects — Toby Clark</title>
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
     <nav>
-        <a href="index.html">Toby Clark</a>
+        <a href="index.html" class="logo">Toby Clark</a>
 
-        <div>
+        <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="projects.html">Projects</a>
@@ -20,12 +22,171 @@
         </div>
     </nav>
 
-    <main>
+    <main class="projects-page">
 
-        <h1>Projects</h1>
+        <section class="projects-header">
+            <p class="eyebrow">SELECTED PROJECTS</p>
 
-        <p>This is where I'll showcase my projects.</p>
+            <h1>Projects</h1>
 
+            <p class="projects-intro">
+                A collection of work across computational physics,
+                research software, quantitative modelling and probability.
+            </p>
+        </section>
+
+        <section class="project-list">
+
+            <article class="project-card" id="percolation">
+                <div class="project-number">01</div>
+
+                <div class="project-content">
+                    <p class="project-type">COMPUTATIONAL PHYSICS</p>
+
+                    <h2>Percolation &amp; network modelling</h2>
+
+                    <p class="project-summary">
+                        Computational study of site and bond percolation using
+                        Newman-Ziff methods, with algorithmic modelling of
+                        cluster formation and connectivity.
+                    </p>
+
+                    <a href="#percolation-details" class="project-link">
+                        View project →
+                    </a>
+                </div>
+            </article>
+
+
+            <article class="project-card" id="matter-app">
+                <div class="project-number">02</div>
+
+                <div class="project-content">
+                    <p class="project-type">RESEARCH SOFTWARE</p>
+
+                    <h2>MatterApp - HPC research tooling</h2>
+
+                    <p class="project-summary">
+                        Built a Python desktop application for remote HPC workflows,
+                        combining SSH/SFTP access, two-factor authentication and 
+                        automated analysis of electronic-structure calculations.
+                    </p>
+
+                    <a href="#matter-app-details" class="project-link">
+                        View project →
+                    </a>
+                </div>
+            </article>
+
+
+            <article class="project-card" id="power-modelling">
+                <div class="project-number">03</div>
+
+                <div class="project-content">
+                    <p class="project-type">ENERGY &amp; QUANTITATIVE MODELLING</p>
+
+                    <h2>Power price modelling</h2>
+
+                    <p class="project-summary">
+                        Built an electricity-price forecasting pipeline using
+                        temporal, lagged and generation-mix features, with
+                        area-specific models and out-of-sample evaluation.
+                    </p>
+
+                    <a href="#power-modelling-details" class="project-link">
+                        View project →
+                    </a>
+                </div>
+            </article>
+
+
+            <article class="project-card" id="blackjack">
+                <div class="project-number">04</div>
+
+                <div class="project-content">
+                    <p class="project-type">PROBABILITY &amp; DECISION MODELLING</p>
+
+                    <h2>Blackjack strategy engine</h2>
+
+                    <p class="project-summary">
+                        Built a playable Blackjack environment with an expected-value
+                        strategy engine that compares hit and stand decisions using
+                        recursive probability models.
+                    </p>
+
+                    <a href="#blackjack-details" class="project-link">
+                        View project →
+                    </a>
+                </div>
+            </article>
+        </section>
+
+        <section class="project-details">
+            
+            <article class="project-detail" id="percolation-details">
+                <div class="project-detail-header">
+                    <p class="project-detail-label">01 · COMPUTATIONAL PHYSICS</p>
+                    <h2>Percolation &amp; network modelling</h2>
+                </div>
+
+                <div class="project-detail-grid">
+                    <div class="project-detail-main">
+                        <p class="project-detail-intro">
+                            This project explored site and bond percolation through computational
+                            modelling, with a focus on connectivity, cluster formation and the
+                            algorithmic structure of percolation simulations.
+                        </p>
+
+                        <div class="project-detail-section">
+                            <h3>Overview</h3>
+                            <p>
+                                Percolation models provide a simple but powerful way to study how
+                                large-scale connected structure emerges from local randomness.
+                                I used computational methods to model occupation and connectivity
+                                on a lattice, and to analyse how clusters form as occupation
+                                probability increases.
+                            </p>
+                        </div>
+
+                        <div class="project-detail-section">
+                            <h3>What I did</h3>
+                            <p>
+                                I implemented percolation simulations and used them to study the
+                                emergence of connected components across a lattice. The work focused
+                                on the computational representation of sites, bonds and neighbour
+                                relationships, as well as the behaviour of clusters under random
+                                occupation.
+                            </p>
+                        </div>
+
+                        <div class="project-detail-section">
+                            <h3>Technical focus</h3>
+                            <p>
+                                The project involved simulation design, randomised occupation order,
+                                neighbour detection, cluster connectivity and computational analysis
+                                of network behaviour. It also informed the animated lattice visual
+                                used on this website’s homepage.
+                            </p>
+                        </div>
+                    </div>
+
+                    <aside class="project-detail-side">
+                        <div class="project-meta-block">
+                            <p class="project-meta-label">TOOLS</p>
+                            <p class="project-meta-text">Python · algorithms · simulation</p>
+                        </div>
+
+                        <div class="project-meta-block">
+                            <p class="project-meta-label">VISUAL</p>
+                            <div class="project-visual-placeholder">
+                                Homepage percolation animation / simulation still
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </article>
+
+        </section>
     </main>
 
 </body>

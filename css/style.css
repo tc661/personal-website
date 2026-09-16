@@ -195,6 +195,195 @@ h1 {
     margin: 0;
 }
 
+.projects-page {
+    padding-top: 90px;
+    padding-bottom: 120px;
+}
+
+.projects-header {
+    max-width: 700px;
+    margin-bottom: 90px;
+}
+
+.projects-header h1 {
+    margin-bottom: 25px;
+}
+
+.projects-intro {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #555;
+    max-width: 600px;
+}
+
+.project-list {
+    border-top: 1px solid #ccc;
+}
+
+.project-card {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 40px;
+
+    padding: 55px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.project-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #777;
+    padding-top: 6px;
+}
+
+.project-content {
+    max-width: 760px;
+}
+
+.project-type {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    color: #777;
+    margin: 0 0 15px;
+}
+
+.project-card h2 {
+    font-size: 36px;
+    letter-spacing: -1.5px;
+    margin: 0 0 18px;
+}
+
+.project-summary {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #555;
+    max-width: 650px;
+    margin-bottom: 20px;
+}
+
+.project-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1a1a1a;
+    text-decoration: none;
+}
+
+.project-link:hover {
+    text-decoration: underline;
+}
+
+.project-details {
+    padding-top: 100px;
+}
+
+.project-detail {
+    padding: 90px 0;
+    border-top: 1px solid #ccc;
+}
+
+.project-detail-header {
+    max-width: 760px;
+    margin-bottom: 45px;
+}
+
+.project-detail-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    color:#777;
+    margin: 0 0 14px;
+}
+
+.project-detail-header h2 {
+    font-size: 44px;
+    letter-spacing: -2px;
+    margin: 0;
+}
+
+.project-detail-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 70px;
+    align-items: start;
+}
+
+.project-detail-main {
+    max-width: 760px;
+}
+
+.project-detail-intro {
+    font-size: 24px;
+    line-height: 1.45;
+    margin: 0 0 35px;
+}
+
+.project-detail-section {
+    margin-bottom: 35px;
+}
+
+.project-detail-section h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1.3px;
+    color: #777;
+    margin: 0 0 12px;
+}
+
+.project-detail-section p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    line-height: 1.75;
+    color: #555;
+    margin: 0;
+    max-width: 680px;
+}
+
+.project-detail-side {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.project-meta-block {
+    border-top: 1px solid #ddd;
+    padding-top: 14px;
+}
+
+.project-meta-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.3px;
+    color: #777;
+    margin: 0 0 10px;
+}
+
+.project-meta-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #555;
+    margin: 0;
+}
+
+.project-visual-placeholder {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #666;
+    background: #f0f0ec;
+    border: 1px solid #ddd;
+    padding: 22px;
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+}
+
+
+
 @media (max-width: 800px) {
     nav {
         padding: 25px 25px;
@@ -235,5 +424,45 @@ h1 {
 
     .work-type {
         grid-column: 2;
+    }
+
+    .projects-page {
+        padding-top: 60px;
+    }
+
+    .projects-header {
+        margin-bottom: 60px;
+    }
+
+    .project-card {
+        grid-template-columns: 35px 1fr;
+        gap: 20px;
+        padding: 40px 0;
+    }
+
+    .project-card h2 {
+        font-size: 28px;
+    }
+
+    .project-details {
+        padding-top: 70px;
+    }
+
+    .project-detail {
+        padding: 60px 0;
+    }
+
+    .project-detail-header h2 {
+        font-size: 32px;
+        letter-spacing: -1px;
+    }
+
+    .project-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .project-detail-intro {
+        font-size: 20px;
     }
 }
