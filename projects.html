@@ -124,66 +124,481 @@
         <section class="project-details">
             
             <article class="project-detail" id="percolation-details">
+
                 <div class="project-detail-header">
                     <p class="project-detail-label">01 · COMPUTATIONAL PHYSICS</p>
                     <h2>Percolation &amp; network modelling</h2>
                 </div>
 
                 <div class="project-detail-grid">
+
                     <div class="project-detail-main">
+
                         <p class="project-detail-intro">
-                            This project explored site and bond percolation through computational
-                            modelling, with a focus on connectivity, cluster formation and the
-                            algorithmic structure of percolation simulations.
+                            A computational study of phase transitions in two-dimensional
+                            percolation, comparing direct Monte Carlo sampling with the
+                            Newman–Ziff algorithm for tracking connectivity efficiently.
                         </p>
 
                         <div class="project-detail-section">
-                            <h3>Overview</h3>
+                            <h3>THE QUESTION</h3>
+
                             <p>
-                                Percolation models provide a simple but powerful way to study how
-                                large-scale connected structure emerges from local randomness.
-                                I used computational methods to model occupation and connectivity
-                                on a lattice, and to analyse how clusters form as occupation
-                                probability increases.
+                                Percolation provides a simple model for how global connectivity
+                                can emerge from local randomness. I investigated how spanning
+                                clusters form on finite square lattices as the occupation
+                                probability increases, and how efficiently this transition can
+                                be resolved computationally.
                             </p>
                         </div>
 
                         <div class="project-detail-section">
-                            <h3>What I did</h3>
+                            <h3>THE ALGORITHMS</h3>
+
                             <p>
-                                I implemented percolation simulations and used them to study the
-                                emergence of connected components across a lattice. The work focused
-                                on the computational representation of sites, bonds and neighbour
-                                relationships, as well as the behaviour of clusters under random
-                                occupation.
+                                I first implemented direct Monte Carlo sampling using breadth-first
+                                search to test whether independently generated lattices contained
+                                a top-to-bottom spanning cluster. I then implemented a union–find
+                                data structure with path compression and union by rank, and used
+                                it to build the Newman–Ziff algorithm.
                             </p>
                         </div>
 
                         <div class="project-detail-section">
-                            <h3>Technical focus</h3>
+                            <h3>NEWMAN–ZIFF</h3>
+
                             <p>
-                                The project involved simulation design, randomised occupation order,
-                                neighbour detection, cluster connectivity and computational analysis
-                                of network behaviour. It also informed the animated lattice visual
-                                used on this website’s homepage.
+                                Rather than regenerating a lattice for every occupation
+                                probability, the Newman–Ziff method occupies sites incrementally
+                                in random order and dynamically updates connected components.
+                                I tracked spanning behaviour and largest-cluster size after every
+                                occupation step, then used binomial convolution to recover
+                                observables as continuous functions of occupation probability.
                             </p>
                         </div>
+
+                        <div class="project-detail-section">
+                            <h3>RESULTS</h3>
+
+                            <p>
+                                The simulations reproduced the characteristic sharpening of the
+                                percolation transition with increasing lattice size, with spanning
+                                probability curves intersecting near p ≈ 0.593, consistent with
+                                the critical probability for site percolation on a square lattice.
+                                Timing experiments also showed the computational advantage of
+                                Newman–Ziff over repeated BFS sampling, particularly as the
+                                resolution in occupation probability was increased.
+                            </p>
+                        </div>
+
+                        <div class="project-detail-section">
+                            <h3>WHAT I LEARNT</h3>
+
+                            <p>
+                                The project connected statistical physics with practical algorithm
+                                design: graph traversal, disjoint-set data structures, Monte Carlo
+                                methods, numerical convolution and empirical complexity analysis.
+                                It also showed how choosing the right representation of a problem
+                                can remove large amounts of repeated computation.
+                            </p>
+                        </div>
+
                     </div>
 
+
                     <aside class="project-detail-side">
+
                         <div class="project-meta-block">
                             <p class="project-meta-label">TOOLS</p>
-                            <p class="project-meta-text">Python · algorithms · simulation</p>
+                            <p class="project-meta-text">
+                                Python · NumPy · SciPy · Matplotlib
+                            </p>
+                        </div>
+
+                        <div class="project-meta-block">
+                            <p class="project-meta-label">METHODS</p>
+                            <p class="project-meta-text">
+                                Monte Carlo · BFS · union–find · Newman–Ziff · binomial convolution
+                            </p>
+                        </div>
+
+                        <div class="project-meta-block">
+                            <p class="project-meta-label">RESULT</p>
+                            <p class="project-meta-text">
+                                Numerical transition near p ≈ 0.593
+                            </p>
                         </div>
 
                         <div class="project-meta-block">
                             <p class="project-meta-label">VISUAL</p>
+
                             <div class="project-visual-placeholder">
-                                Homepage percolation animation / simulation still
+                                Percolation transition / spanning probability visual
                             </div>
                         </div>
+
                     </aside>
+
                 </div>
+
+            </article>
+
+            <article class="project-detail" id="matter-app-details">
+
+                <div class="project-detail-header">
+                    <p class="project-detail-label">02 · RESEARCH SOFTWARE</p>
+                    <h2>MatterApp — HPC research tooling</h2>
+                </div>
+
+                <div class="project-detail-grid">
+
+                    <div class="project-detail-main">
+
+                        <p class="project-detail-intro">
+                            MatterApp is a Python desktop application I built to simplify
+                            computational materials workflows across local and remote HPC systems.
+                        </p>
+
+                        <div class="project-detail-section">
+                            <h3>THE PROBLEM</h3>
+
+                            <p>
+                                Working with remote HPC systems often involves switching between
+                                terminals, file-transfer tools, visualisation software and separate
+                                analysis scripts. I wanted to bring those repetitive steps into a
+                                single interface and make common research workflows easier to manage.
+                            </p>
+                        </div>
+
+                        <div class="project-detail-section">
+                            <h3>WHAT I BUILT</h3>
+
+                            <p>
+                                I developed a PySide6 desktop application that connects to remote
+                                HPC systems over SSH and SFTP, provides an integrated remote file
+                                browser, and supports interactive two-factor authentication.
+                                Remote structures, images and analysis files can be accessed
+                                directly from the application.
+                            </p>
+                        </div>
+
+                        <div class="project-detail-section">
+                            <h3>SCIENTIFIC ANALYSIS</h3>
+
+                            <p>
+                                The application also includes tooling for VASP workflows, including
+                                run classification, convergence checks, magnetisation extraction,
+                                structure inspection and analysis of PROCAR band and orbital data.
+                                These tools turn raw simulation outputs into more immediately useful
+                                summaries and visualisations.
+                            </p>
+                        </div>
+
+                        <div class="project-detail-section">
+                            <h3>TECHNICAL FOCUS</h3>
+
+                            <p>
+                                The project combines GUI development, remote authentication,
+                                asynchronous behaviour, file-system handling and scientific data
+                                processing. It also required separating the application into
+                                components for connection management, file browsing, parsing,
+                                analysis and visualisation.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <aside class="project-detail-side">
+
+                        <div class="project-meta-block">
+                            <p class="project-meta-label">TOOLS</p>
+                            <p class="project-meta-text">
+                                Python · PySide6 · Paramiko · NumPy · Matplotlib · ASE
+                            </p>
+                        </div>
+
+                        <div class="project-meta-block">
+                            <p class="project-meta-label">FOCUS</p>
+                            <p class="project-meta-text">
+                                HPC · SSH/SFTP · 2FA · scientific computing · research automation
+                            </p>
+                        </div>
+
+                        <div class="project-meta-block">
+                            <p class="project-meta-label">SOURCE</p>
+                            <a
+                                href="https://github.com/tc661/matter-app"
+                                class="project-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View on GitHub →
+                            </a>
+                        </div>
+
+                        <div class="project-meta-block">
+                            <p class="project-meta-label">VISUAL</p>
+
+                            <div class="project-visual-placeholder">
+                                MatterApp application screenshot
+                            </div>
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </article>
+
+
+            <article class="project-detail" id="power-modelling-details">
+
+                <div class="project-detail-header">
+                    <p class="project-detail-label">03 · ENERGY &amp; QUANTITATIVE MODELLING</p>
+                    <h2>Power price modelling</h2>
+                </div>
+
+                <div class="project-detail-grid">
+
+                    <div class="project-detail-main">
+
+                        <p class="project-detail-intro">
+                            A forecasting project exploring how temporal behaviour, recent market
+                            conditions and electricity-system fundamentals can be combined to model
+                            regional power prices.
+                        </p>
+
+                        <div class="project-detail-section">
+                            <h3>THE PROBLEM</h3>
+
+                            <p>
+                                Electricity prices depend on a mixture of recurring temporal patterns,
+                                local system conditions and rapidly changing supply-and-demand dynamics.
+                                I worked on building a modelling pipeline that could transform these
+                                different sources of information into features suitable for price
+                                forecasting.
+                            </p>
+                        </div>
+
+                        <div class="project-detail-section">
+                            <h3>FEATURE ENGINEERING</h3>
+
+                            <p>
+                                I constructed temporal features including hour, weekday, month and
+                                weekend indicators, alongside lagged observations of price and system
+                                load. I also created features describing renewable generation,
+                                renewable share of demand and residual non-renewable demand to capture
+                                interactions between generation mix and market conditions.
+                            </p>
+                        </div>
+
+                        <div class="project-detail-section">
+                            <h3>MODELLING PIPELINE</h3>
+
+                            <p>
+                                The workflow separated numerical and categorical variables and used
+                                a preprocessing pipeline with standardisation and one-hot encoding
+                                before model fitting. Rather than fitting a single global model, I
+                                also implemented separate models for individual market areas to allow
+                                regional behaviour to be represented independently.
+                            </p>
+                        </div>
+
+                        <div class="project-detail-section">
+                            <h3>EVALUATION</h3>
+
+                            <p>
+                                Models were trained on an earlier time period and evaluated on held-out
+                                later data using root mean squared error, both overall and at individual
+                                area level. This provided a simple way to compare in-sample fit with
+                                genuine out-of-sample forecasting performance.
+                            </p>
+                        </div>
+
+                        <div class="project-detail-section">
+                            <h3>WHAT I LEARNT</h3>
+
+                            <p>
+                                The project gave me practical experience building a complete predictive
+                                modelling workflow: understanding raw market data, designing features,
+                                preventing temporal information leakage, constructing reusable
+                                preprocessing pipelines and evaluating models on unseen data.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <aside class="project-detail-side">
+
+                        <div class="project-meta-block">
+                            <p class="project-meta-label">TOOLS</p>
+                            <p class="project-meta-text">
+                                Python · pandas · NumPy · scikit-learn · Matplotlib
+                            </p>
+                        </div>
+
+                        <div class="project-meta-block">
+                            <p class="project-meta-label">METHODS</p>
+                            <p class="project-meta-text">
+                                Feature engineering · time-series lags · regression ·
+                                regional modelling · out-of-sample evaluation
+                            </p>
+                        </div>
+
+                        <div class="project-meta-block">
+                            <p class="project-meta-label">CONTEXT</p>
+                            <p class="project-meta-text">
+                                Electricity markets · price forecasting
+                            </p>
+                        </div>
+
+                        <div class="project-meta-block">
+                            <p class="project-meta-label">VISUAL</p>
+
+                            <div class="project-visual-placeholder">
+                                Forecast performance / feature-engineering visual
+                            </div>
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </article>
+
+
+            <article class="project-detail" id="blackjack-details">
+
+                <div class="project-detail-header">
+                    <p class="project-detail-label">04 · PROBABILITY &amp; DECISION MODELLING</p>
+                    <h2>Blackjack strategy engine</h2>
+                </div>
+
+                <div class="project-detail-grid">
+
+                    <div class="project-detail-main">
+
+                        <p class="project-detail-intro">
+                            A playable Blackjack environment paired with a recursive strategy
+                            engine that evaluates hit and stand decisions using expected value.
+                        </p>
+
+                        <div class="project-detail-section">
+                            <h3>THE PROBLEM</h3>
+
+                            <p>
+                                Blackjack is a useful decision-making problem because each action
+                                can be evaluated probabilistically. I wanted to go beyond simply
+                                implementing the game and build an engine that could quantify the
+                                expected outcome of different decisions from any player and dealer
+                                state.
+                            </p>
+                        </div>
+
+                        <div class="project-detail-section">
+                            <h3>EXPECTED-VALUE ENGINE</h3>
+
+                            <p>
+                                I modelled dealer outcomes recursively, exploring every possible
+                                sequence of dealer draws until a terminal state was reached. These
+                                outcome probabilities were then used to calculate the expected
+                                value of standing for a given player hand.
+                            </p>
+                        </div>
+
+                        <div class="project-detail-section">
+                            <h3>OPTIMAL DECISIONS</h3>
+
+                            <p>
+                                To evaluate hitting, the engine considers every possible next card
+                                and recursively analyses the resulting hand. At each future state,
+                                it chooses the action with the higher expected value, allowing the
+                                original hit decision to incorporate optimal subsequent play.
+                            </p>
+                        </div>
+
+                        <div class="project-detail-section">
+                            <h3>MEMOISATION &amp; STRATEGY CHART</h3>
+
+                            <p>
+                                Because many game states are encountered repeatedly, I cached
+                                previously calculated dealer distributions and hit/stand expected
+                                values. The engine can generate a complete strategy table for hard
+                                and soft hands and serialise the resulting decisions and expected
+                                values for reuse.
+                            </p>
+                        </div>
+
+                        <div class="project-detail-section">
+                            <h3>INTERACTIVE GAME</h3>
+
+                            <p>
+                                I integrated the strategy engine into a Pygame Blackjack interface
+                                with animated dealing, card flipping and resizable layouts. During
+                                play, the application displays the recommended action alongside the
+                                expected values associated with the available decisions.
+                            </p>
+                        </div>
+
+                        <div class="project-detail-section">
+                            <h3>WHAT I LEARNT</h3>
+
+                            <p>
+                                The project gave me practical experience with recursive probability
+                                models, expected-value optimisation, state caching and separating
+                                decision logic from an interactive application. It also provided a
+                                simple environment for thinking about sequential decisions under
+                                uncertainty.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <aside class="project-detail-side">
+
+                        <div class="project-meta-block">
+                            <p class="project-meta-label">TOOLS</p>
+                            <p class="project-meta-text">
+                                Python · Pygame · pandas · JSON
+                            </p>
+                        </div>
+
+                        <div class="project-meta-block">
+                            <p class="project-meta-label">METHODS</p>
+                            <p class="project-meta-text">
+                                Expected value · recursion · memoisation · probability ·
+                                decision optimisation
+                            </p>
+                        </div>
+
+                        <div class="project-meta-block">
+                            <p class="project-meta-label">SOURCE</p>
+
+                            <a
+                                href="https://github.com/tc661/blackjack"
+                                class="project-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View on GitHub →
+                            </a>
+                        </div>
+
+                        <div class="project-meta-block">
+                            <p class="project-meta-label">VISUAL</p>
+
+                            <div class="project-visual-placeholder">
+                                Blackjack game with live strategy recommendation
+                            </div>
+                        </div>
+
+                    </aside>
+
+                </div>
+
             </article>
 
         </section>
