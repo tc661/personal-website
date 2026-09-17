@@ -229,17 +229,137 @@
                             </p>
                         </div>
 
-                        <div class="project-meta-block">
-                            <p class="project-meta-label">VISUAL</p>
-
-                            <div class="project-visual-placeholder">
-                                Percolation transition / spanning probability visual
-                            </div>
-                        </div>
-
                     </aside>
 
                 </div>
+
+            <div class="percolation-explorer">
+
+                <div class="explorer-header">
+                    <div>
+                        <p class="explorer-label">INTERACTIVE MODEL</p>
+                        <h3>Percolation explorer</h3>
+                    </div>
+
+                    <div class="explorer-status">
+                        <span class="status-dot"></span>
+                        <span id="percolation-status">NOT SPANNING</span>
+                    </div>
+                </div>
+
+
+                <div class="explorer-main">
+
+                    <!-- LEFT: lattice simulation -->
+                    <div class="explorer-panel lattice-panel">
+
+                        <div class="panel-header">
+                            <span>LATTICE</span>
+                            <span id="lattice-size-label">L = 20</span>
+                        </div>
+
+                        <div class="explorer-lattice" id="explorer-lattice">
+                            <!-- JavaScript will create the sites -->
+                        </div>
+
+                    </div>
+
+
+                    <!-- RIGHT: spanning probability -->
+                     <div class="explorer-panel probability-panel">
+
+                        <div class="panel-header">
+                            <span>SPANNING PROBABILITY</span>
+                            <span>Q(p)</span>
+                        </div>
+
+                        <div class="probability-plot" id="probability-plot">
+
+                            <div class="plot-y-label">1.0</div>
+                            <div class="plot-y-label plot-y-middle">0.5</div>
+                            <div class="plot-y-label plot-y-bottom">0.0</div>
+
+                            <svg
+                                class="probability-svg"
+                                viewBox="0 0 500 300"
+                                preserveAspectRatio="none"
+                            >
+                                <!-- probability curves will go here -->
+                            </svg>
+
+                            <div class="critical-marker">
+                                <span>p<sub>c</sub> ≈ 0.593</span>
+                            </div>
+
+                        </div>
+
+                     </div>
+                    
+                </div>
+
+
+                <!-- CONTROLS -->
+                 <div class="explorer-controls">
+
+                    <div class="probability-control">
+
+                        <div class="control-label">
+                            <span>OCCUPATION PROBABILITY</span>
+                            <span id="probability-value">p = 0.593</span>
+                        </div>
+
+                        <input
+                            type="range"
+                            id="probability-slider"
+                            min="0"
+                            max="1"
+                            step="0.001"
+                            value="0.593"
+                        >
+
+
+                    </div>
+
+
+                    <div class="explorer-actions">
+
+                        <button id="regenerate-lattice" class="explorer-button">
+                            REGENERATE
+                        </button>
+
+                        <button id="run-percolation" class="explorer-button">
+                            RUN →
+                        </button>
+
+                    </div>
+
+                 </div>
+
+                 <div class="explorer-data">
+
+                    <div class="data-item">
+                        <span class="data-label">LATTICE</span>
+                        <span class="data-value" id="data-lattice-size">20 × 20</span>
+                    </div>
+
+                    <div class="data-item">
+                        <span class="data-label">OCCUPIED</span>
+                        <span class="data-value" id="occupied-count">0 / 400</span>
+                    </div>
+
+                    <div class="data-item">
+                        <span class="data-label">p</span>
+                        <span class="data-value" id="data-probability">0.593</span>
+                    </div>
+
+                    <div class="data-item">
+                        <span class="data-label">METHOD</span>
+                        <span class="data-value">SITE PERCOLATION</span>
+                    </div>
+
+                 </div>
+                 
+            </div>
 
             </article>
 
