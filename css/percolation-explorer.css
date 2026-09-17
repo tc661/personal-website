@@ -134,6 +134,23 @@
     bottom: -5px;
 }
 
+.plot-x-label {
+    position: absolute;
+    bottom: -28px;
+
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #777;
+}
+
+.plot-x-start {
+    left: 0;
+}
+
+.plot-x-end {
+    right: 0;
+}
+
 .critical-marker {
     position: absolute;
 
@@ -292,6 +309,35 @@
 .explorer-site.spanning {
     background: #1a1a1a;
 }
+
+/* SPANNING CURVE */
+
+.spanning-curve {
+    fill: none;
+    stroke: #1a1a1a;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    vector-effect: non-scaling-stroke;
+}
+
+.current-probability-line {
+    stroke: #aaa;
+    stroke-width: 1;
+    stroke-dasharray: 4 4;
+
+    vector-effect: non-scaling-stroke;
+}
+
+.probability-marker {
+    fill: #f7f7f5;
+    stroke: #1a1a1a;
+    stroke-width: 2;
+
+    vector-effect: non-scaling-stroke;
+}
+
 
 @media (max-width: 800px) {
     .explorer-controls-inner {
