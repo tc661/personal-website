@@ -253,6 +253,42 @@ class ExplorerGrid {
         }
     }
 
+    reset() {
+        this.grid = Array.from(
+            { length: this.size },
+            () => Array(this.size).fill(false)
+        );
+
+        this.spanningSites.clear();
+        this.spans = false;
+
+        this.render();
+
+        this.occupiedElement.textContent =
+            `0 / ${this.size * this.size}`;
+    }
+
+
+    updateCurrentGrid() {
+        this.spanningSites.clear()
+
+        this.findSpanningCluster();
+        this.render();
+
+        let occupiedCount = 0;
+
+        for (const row of this.grid) {
+            for (const site of row) {
+                if (site) {
+                    occupiedCount++;
+                }
+            }
+        }
+
+        this.occupiedElement.textContent = 
+            `${occupiedCount} / ${this.size * this.size}`;
+    }
+
     setProbability(probability) {
         this.probability = probability;
         this.generate();
@@ -373,6 +409,7 @@ function updateProbabilityMarker(p) {
     line.setAttribute("y2", y);
 }
 
+
 const probabilitySlider =
     document.getElementById("probability-slider");
 
@@ -384,6 +421,9 @@ const dataProbability =
 
 const regenerateButton = 
     document.getElementById("regenerate-lattice");
+
+const runButton = 
+    document.getElementById("run-percolation");
 
 
 const explorerGrid = new ExplorerGrid(
@@ -402,6 +442,130 @@ drawSpanningCurve(spanningCurve);
 updateProbabilityMarker(
     Number(probabilitySlider.value)
 );
+
+
+
+function randomSiteOrder(size) {
+    const numberOfSites = size * size;
+
+    const order = Array.from(
+        { length: numberOfSites },
+        (_, index) => index
+    );
+
+    // Fisher-Yates Shuffle
+    for (let i = order.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [order[i], order[j]] =
+            [order[j], order[i]]
+    }
+
+    return order;
+}
+
+
+let animationFrameId = null;
+let isRunning = false;
+
+
+function stopSweep() {
+    if (animationFrameId != null) {
+        cancelAnimationFrame(animationFrameId);
+    }
+
+    animationFrameId = null;
+    isRunning = false;
+
+    runButton.textContent = "RUN →";
+
+    probabilitySlider.disabled = false;
+    regenerateButton.disabled = false;
+}
+
+
+function runSweep() {
+
+    // If RUN is clicked again while running, stop the animation
+    if (isRunning) {
+        stopSweep();
+        return;
+    }
+
+    isRunning = true;
+
+    runButton.textContent = "STOP";
+    probabilitySlider.disabled = true;
+    regenerateButton.disabled = true;
+
+    explorerGrid.reset();
+
+    const order = randomSiteOrder(explorerGrid.size);
+
+    const totalSites =
+        explorerGrid.size * explorerGrid.size;
+
+    let occupiedSites = 0;
+
+    // Occupying two sites per frame gives us a
+    // roughly 3-second animation on a 60 Hz display
+    const sitesPerFrame = 2;
+
+
+    function step(){
+
+        for (
+            let i = 0;
+            i < sitesPerFrame && occupiedSites < totalSites;
+            i++
+        ) {
+            const siteIndex = order[occupiedSites];
+
+            const row =
+                Math.floor(siteIndex / explorerGrid.size);
+
+            const col =
+                siteIndex % explorerGrid.size;
+
+            explorerGrid.grid[row][col] = true;
+
+            occupiedSites++;
+        }
+
+        // Fraction of occupied sites
+        const p = occupiedSites / totalSites;
+
+        explorerGrid.probability = p;
+
+        explorerGrid.updateCurrentGrid();
+
+
+        // Move slider
+        probabilitySlider.value = p;;
+
+        // Update labels
+        probabilityValue.textContent = 
+            `p = ${p.toFixed(3)}`;
+
+        dataProbability.textContent =
+            p.toFixed(3);
+        
+        // Move graph marker
+        updateProbabilityMarker(p);
+
+        if (occupiedSites < totalSites) {
+            animationFrameId = 
+                requestAnimationFrame(step);
+        } else {
+            stopSweep();
+        }
+    }
+
+
+    animationFrameId =
+        requestAnimationFrame(step);
+}
+
 
 probabilitySlider.addEventListener("input", () => {
 
@@ -427,4 +591,6 @@ regenerateButton.addEventListener("click", () => {
     explorerGrid.generate();
 
 });
+
+runButton.addEventListener("click", runSweep);
 

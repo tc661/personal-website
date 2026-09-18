@@ -247,6 +247,12 @@
         border-color 0.15s ease;
 }
 
+.explorer-button:disabled,
+#probability-slider:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
 .explorer-button:hover {
     background: #1a1a1a;
     color: #f7f7f5;
